@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './MovieList.css'
 
 function MovieList() {
@@ -14,13 +15,19 @@ function MovieList() {
     return (
         <main>
             <h1>MovieList</h1>
+            <Link to ='/add-movie'>
+                <button>Add Movie</button>
+            </Link><br />
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} >
+                        <Link to = {`/details/${movie.id}`} params={movie.id} key={movie.id}>
+                        <div>
+                        {/* <div key={movie.id} > */}
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
                         </div>
+                        </Link>
                     );
                 })}
             </section>
