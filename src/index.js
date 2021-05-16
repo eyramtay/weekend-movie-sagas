@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('SET_GENRES', fetchAllGenres);
     yield takeEvery('SET_DETAILS', fetchDetail);
+    yield takeEvery('ADD_MOVIE', addMovie);
 }
 
 function* fetchAllMovies() {
@@ -53,6 +54,14 @@ function* fetchDetail(action) {
     }
 }
 
+function* addMovie(action) {
+    try {
+        yield axios.post('/api/movie', action.payload);
+    } catch {
+        console.log('Adding a new movie...');
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -76,7 +85,7 @@ const genres = (state = [], action) => {
     }
 }
 
-const detail = (state = {}, action) => {
+const detail = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAILS':
             return action.payload;
