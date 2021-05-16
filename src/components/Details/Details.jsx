@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 function Details(prop) {
 
     const movies = useSelector((store) => store.movies);
-    const genres = useSelector((store) => store.genres);
+    // const genres = useSelector((store) => store.genres);
     const details = useSelector((store) => store.detail);
 
     const dispatch = useDispatch();

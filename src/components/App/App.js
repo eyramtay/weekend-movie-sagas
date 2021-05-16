@@ -7,19 +7,19 @@ import Details from '../Details/Details';
 
 function App() {
 
-  // const [details, setDetails] = useState({});
+  const [details, setDetails] = useState({});
 
   return (
     <div className="App">
       <h1>The Movies Saga!</h1>
       <Router>        
         <Route path="/" exact>
-          <MovieList />
+          <MovieList setDetails={setDetails}/>
         </Route>
         
         {/* Details page */}
-        <Route path="/details/:id/" exact>
-          <Details />
+        <Route path="/details">
+          <Details details={details} />
         </Route>
         {/* Add Movie page */}
         <Route path="/add-movie">
