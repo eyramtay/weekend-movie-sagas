@@ -27,6 +27,34 @@ useEffect(() => {
         genre_id: genre,
     }
 
-    
+    function saveMovie() {
+        console.log(newMovie);
+        dispatch({ type: 'ADD_MOVIE', payload: newMovie })
+        history.push('/');
+    }
+
+    const newTitle = (event) => {
+        setTitle(event.target.value);
+    }
+
+    const newPoster = (event) => {
+        setImageURL(event.target.value);
+    }
+
+    const newDescription = (event) => {
+        setDescription(event.target.value);
+    }
+
+    const newGenre = (event) => {
+        setGenre(event.target.value);
+    }
+
+    return (
+        <>
+            <h1>Add a New Movie:</h1>
+            <input onChange={newTitle} type="text" placeholder="Movie Title..." />
+            
+        </>
+    )
 
 }
