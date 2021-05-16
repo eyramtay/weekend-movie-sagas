@@ -53,8 +53,22 @@ useEffect(() => {
         <>
             <h1>Add a New Movie:</h1>
             <input onChange={newTitle} type="text" placeholder="Movie Title..." />
-            
+            <input onChange={newPoster} type="text" placeholder="Movie Poster URL..." />
+            <textarea onChange={newDescription} placeholder="Enter movie description..."
+            name="description" cols="40" rows="20"></textarea>
+
+            <select onChange={newGenre} name="" id="">
+                {genres.map(genre => {
+                    return (
+                        <option value={genre.id} key={genre.id}>{genre.name}</option>
+                    )
+                })}
+            </select>
+            <button onClick={saveMovie}>Save</button>
+            <button onClick={cancelSubmission}>Cancel</button>
         </>
     )
 
 }
+
+export default AddMovie;
