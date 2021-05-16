@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 function AddMovie() {
 
+// States for input
 const [title, setTitle] = useState('');
 const [genre, setGenre] = useState('');
 const [description, setDescription] = useState('');
@@ -20,6 +21,7 @@ useEffect(() => {
 
 }, []);
 
+    // Object handling the data from the inputs
     let newMovie = {
         title: title,
         poster: imageURL,
@@ -27,9 +29,15 @@ useEffect(() => {
         genre_id: genre,
     }
 
+    // Adds new movie to the database & sends the user to the homepage/MovieList
     function saveMovie() {
         console.log(newMovie);
         dispatch({ type: 'ADD_MOVIE', payload: newMovie })
+        history.push('/');
+    }
+
+    //Brings user back to the homepage/MovieList
+    function cancelSubmission() {
         history.push('/');
     }
 
@@ -52,19 +60,19 @@ useEffect(() => {
     return (
         <>
             <h1>Add a New Movie:</h1>
-            <input onChange={newTitle} type="text" placeholder="Movie Title..." />
-            <input onChange={newPoster} type="text" placeholder="Movie Poster URL..." />
-            <textarea onChange={newDescription} placeholder="Enter movie description..."
-            name="description" cols="40" rows="20"></textarea>
+            <input onChange={newTitle} type="text" placeholder="Movie Title..." />&nbsp;&nbsp;
+            <input onChange={newPoster} type="text" placeholder="Movie Poster URL..." />&nbsp;&nbsp;
 
             <select onChange={newGenre} name="" id="">
                 {genres.map(genre => {
                     return (
                         <option value={genre.id} key={genre.id}>{genre.name}</option>
-                    )
-                })}
-            </select>
-            <button onClick={saveMovie}>Save</button>
+                        )
+                    })}
+            </select><br /><br />
+                    <textarea onChange={newDescription} placeholder="Enter a description of the movie..."
+                    name="description" cols="40" rows="10"></textarea>&nbsp;<br /><br />
+            <button onClick={saveMovie}>Save</button>&nbsp;&nbsp;
             <button onClick={cancelSubmission}>Cancel</button>
         </>
     )
